@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 });
 
 // router
-app.use("/workout/", workoutRoutes);
+app.use("/workout", workoutRoutes);
 
 // connect db
 mongoose.connect(process.env.MONGO_URL)
