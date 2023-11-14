@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 
 import { useEffect, useState } from "react";
+import WorkoutDetails from "../components/WorkoutDetails";
 // import workout from "../../../backend/models/workout";
 
 const Home = () => {
@@ -39,9 +40,7 @@ const Home = () => {
           workouts.map((workout) => {
             return (
               <>
-                <p key={workout._id}> {workout.title}</p>
-                <p key={workout._id}> {workout.reps}</p>
-                <p key={workout._id}> {workout.load}</p>
+                <WorkoutDetails key={workout._id} workout={workout} />
               </>
             );
           })}
