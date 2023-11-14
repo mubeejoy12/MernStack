@@ -1,9 +1,8 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-
-import { useEffect, useState } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
-// import workout from "../../../backend/models/workout";
+import { useEffect, useState } from "react";
+import WorkoutForm from "../components/WorkoutForm";
 
 const Home = () => {
   const [workouts, setWorkouts] = useState(null);
@@ -31,10 +30,9 @@ const Home = () => {
     fecthWorkOut();
   }, []);
   return (
-    <div>
+    <div className="Home">
       <Navbar></Navbar>
-      <p>Home</p>
-      <div className="workout">
+      <div className="workouts">
         {loading && <span>Loaing...</span>}
         {workouts &&
           workouts.map((workout) => {
@@ -45,6 +43,8 @@ const Home = () => {
             );
           })}
       </div>
+
+      <WorkoutForm />
     </div>
   );
 };
