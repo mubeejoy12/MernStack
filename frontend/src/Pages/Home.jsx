@@ -1,12 +1,16 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import WorkoutDetails from "../components/WorkoutDetails";
-import { useEffect, useState } from "react";
-import WorkoutForm from "../components/WorkoutForm";
+import { useEffect } from "react";
+import WorkoutForm from "../components/workoutForm";
+import { useWorkoutContext } from "../hooks/useWorkoutsContext";
+import { useState } from "react";
+
 
 const Home = () => {
-  const [workouts, setWorkouts] = useState(null);
+
   const [loading, setLoading] = useState(false);
+  const {workouts, dispatch}= useWorkoutContext()
 
   useEffect(() => {
     const fecthWorkOut = async () => {
@@ -18,7 +22,7 @@ const Home = () => {
         const json = await response.json();
         console.log(json);
         if (response?.ok) {
-          setWorkouts(json);
+          dispatch({type: 'SET_WORKOUTS', payload: json})
         }
       } catch (error) {
         console.log(error);

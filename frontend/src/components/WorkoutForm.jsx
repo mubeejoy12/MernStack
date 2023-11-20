@@ -8,28 +8,25 @@ const WorkoutForm = () => {
 
   const handlesSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const workout = { title, load, reps };
-      const response = await fetch("http://localhost:4000/workout/createWork", {
-        method: "POST",
-        body: JSON.stringify(workout),
-        headers: {
-          "content-type": "application/json",
-        },
-      });
-      const json = await response.json();
-      if (!response.okay) {
-        setError(json.error);
-      }
-      if (response) {
-        setTitle("");
-        setLoad("");
-        setReps("");
-        setError(null);
-        console.log("new workout created successfully");
-      }
-    } catch (error) {
-      console.log(error);
+
+    const workout = { title, load, reps };
+    const response = await fetch("http://localhost:4000/workout/createWork", {
+      method: "POST",
+      body: JSON.stringify(workout),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    if (!response.okay) {
+      setError(json.error);
+    }
+    if (response) {
+      setTitle("");
+      setLoad("");
+      setReps("");
+      setError(null);
+      console.log("new workout created successfully");
     }
   };
 
